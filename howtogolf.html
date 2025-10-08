@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Golf</title>
+    <title>Golf.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,31 +16,60 @@
 <body>
     <div class="cursor" id="cursor"></div>
 
-    <!-- Demo content (optional) -->
-    <main>
-        <h1>Golf.</h1>
-    </main>
-
-    <h5>Explore my world of golf!</h5>
-    <button onclick="window.location.href='howtogolf.html';">
-        How to guide
     
-    <button onclick="window.location.href='golfbag.html';">
-        Golf Bag
-    </button>
+       
+         <a href="index.html" style="
+      display:inline-block;
+      padding:10px 20px;
+      background:rgb(48, 203, 71);
+      color:white;
+      text-decoration:none;
+      border-radius:5px;
+  ">
+    Home</a>
 
-     <button onclick="window.location.href='courses.html';">
-        Courses
-    </button>
-    <img src="https://royaltyfreefootages.com/upload/video/golf%20ball,%20golf%20ball%20png,%20golf%20ball%20PNG%20image,%20transparent%20golf%20ball%20png%20image,%20golf%20ball%20png%20full%20hd%20images%20download_1659191925.png" alt="First image Moved" id="image1">
-    </button>
+    <div class="carousel">
+  <img src="https://picsum.photos/id/1018/600/350" class="active" alt="Image 1" onclick="window.open('https://example.com/1')">
+  <img src="https://picsum.photos/id/1025/600/350" alt="Image 2" onclick="window.open('https://example.com/2')">
+  <img src="https://picsum.photos/id/1039/600/350" alt="Image 3" onclick="window.open('https://example.com/3')">
 
-<div class="post">
-<p>You found an easter egg!</p>
-<iframe width="600" height="415" src="https://www.youtube.com/embed/0ZcpbsoeDZ0?si=PdL_aGKH1L7DV53L" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+
+  <div class="dots"></div>
 </div>
 
-    <script>
+<script>
+  const images = document.querySelectorAll('.carousel img');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  const dotsContainer = document.querySelector('.dots');
+
+  let current = 0;
+
+  // Create dots dynamically
+  images.forEach((_, i) => {
+    const dot = document.createElement('span');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => showSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.dots span');
+
+  function showSlide(index) {
+    images[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + images.length) % images.length;
+    images[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  prevBtn.addEventListener('click', () => showSlide(current - 1));
+  nextBtn.addEventListener('click', () => showSlide(current + 1));
+</script>
+    
+ <script>
         (function () {
             const cursor = document.getElementById('cursor');
 
@@ -71,5 +100,6 @@
         })();
     </script>
 
-</body>
-</html>
+ </body>
+
+    </html>

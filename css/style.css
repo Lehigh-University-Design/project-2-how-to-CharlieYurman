@@ -1,0 +1,292 @@
+/* Hide the native cursor */
+html,
+body {
+    cursor: none;
+    height: 100%;
+    margin: 0;
+}
+
+/* Demo page styles (optional) */
+body {
+    display: grid;
+    place-items: center;
+    background: #18532a;
+    color: #eee;
+    gap: 1rem;
+}
+
+body {
+    /* Set your image */
+    background-image: url(https://img.freepik.com/free-photo/green-fake-grass-background_53876-16313.jpg);
+
+    /* Make it cover the whole screen */
+    background-size: cover;
+
+    /* Keep it centered */
+    background-position: center;
+
+    /* Prevent tiling (repeating) */
+    background-repeat: repeat-y;
+
+    /* Make sure it fills the full height */
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 400px;
+    /* change this number to make it bigger/smaller */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h3 {
+    font-size: 40px;
+    /* change this number to make it bigger/smaller */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 25px;
+}
+
+h4 {
+    font-size: 40px;
+    /* change this number to make it bigger/smaller */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h5 {
+    font-size: 40px;
+    /* change this number to make it bigger/smaller */
+    font-weight: bold;
+    text-align: center;
+    margin-top: -400px;
+}
+
+h6 {
+      font-size: 40px;
+    /* change this number to make it bigger/smaller */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h7 {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h8 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.post{
+    border: 1px solid var(--dark-color); 
+    margin-bottom: 1em;
+    padding: .5em 1em;
+}
+
+.post{
+    border: 1px solid var(--dark-color); 
+    margin-bottom: 1em;
+    padding: .5em 1em;
+}
+
+
+.post, #post {
+    .img-container {
+        aspect-ratio: 3/2;
+    }
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    a {
+        color: var(--link-color);
+        background-color: var(--light-color);
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+/* The custom cursor */
+
+.cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #fff;
+    /* white circle */
+    border-radius: 50%;
+    pointer-events: none;
+    /* never block clicks */
+    transform: translate(-50%, -50%);
+    transition: transform 120ms ease, opacity 120ms ease;
+    z-index: 2147483647;
+    /* stay on top */
+    /* Keep it visible on light backgrounds */
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, .75));
+}
+
+/* Optional: shrink a bit on click */
+.cursor--down {
+    transform: translate(-50%, -50%) scale(.8);
+}
+
+/* Optional: grow on interactive elements */
+a:hover,
+button:hover,
+[role="button"]:hover {
+    cursor: none;
+}
+
+.cursor--hover {
+    transform: translate(-50%, -50%) scale(3);
+}
+
+/* Regular Styles */
+
+.box {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 10px;
+    /* move down */
+    left: 60px;
+    /* move right */
+}
+
+button {
+      padding: 12px 24px;
+      font-size: 20px;
+      border: none;
+      border-radius: 30px;
+      background: rgb(33, 218, 113);
+      color: white;
+      cursor: pointer;
+      margin: -100;
+    }
+
+    button {
+        position: relative;
+        left: 0px;
+        top: -150px;
+    }
+
+    body {
+    font-family: sans-serif;
+    background-color: #2b5d24;
+    font-weight: bold;
+    .text-box {
+    margin-left: 44vw;
+   margin-top: 42vh;
+}
+}
+
+
+#image1 {
+    position: relative;
+      top: -450px;   /* move down */
+      left: 500px;  /* move right */
+      width: 800px;
+}
+
+#image2 {
+    position: relative;
+      top: 200px;   /* move down */
+      left: 200px;  /* move right */
+      width: 200px;
+
+}
+
+.carousel {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #000;
+  }
+
+  /* === Carousel Images === */
+  .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    cursor: pointer;
+  }
+
+  .carousel img.active {
+    display: block;
+  }
+
+  /* === Navigation Buttons === */
+  .carousel button {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .carousel button:hover {
+    background: rgba(255,255,255,0.9);
+  }
+
+.carousel .prev {
+  position: absolute;
+  left: 10px;   /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel .next {
+  position: absolute;
+  right: 500px;  /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+  /* === Optional Dots === */
+  .dots {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dots span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .dots span.active {
+    background: white;
+  }

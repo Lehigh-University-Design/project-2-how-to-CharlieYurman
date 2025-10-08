@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses I've Played</title>
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="cursor" id="cursor"></div>
+
+     <div class="post">
+        <h3>Courses I've visited:</h3>
+        <h3>TPC Sawgrass, Ponte Vedra Beach, FL</h3>
+        <img src="https://blog.supremegolf.com/wp-content/uploads/2019/06/14513456410_b53939cc96_b.jpg">
+    </div>
+
+    <div class="post">
+        <h4>Great River Golf Course, Milford, CT</h4>
+        <img src="https://www.sacredheart.edu/media/shu-media/press-room-2021/Great-River-Golf-Club-1220x523.jpg">
+    </div>
+
+
+    <div class="post">
+        <h6>Mirasol Golf Course, West Palm Beach, FL</h6>
+        <img src="https://www.mirasolmembers.com/images/dynamic/getImage.gif?ID=100006329">
+    </div>
+
+    <div class="post">
+        <h4>Country Club of Darien, Darien, CT</h4>
+        <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2023/1/Medinah%203%2013th%202024.jpg.rend.hgtvcom.966.644.suffix/1726939427733.jpeg">
+
+    </div>
+
+    <div class="post">
+    <h6>World Golf Village (The Slammer & Squire), Pinehurst, NC </h6>
+    <img src="https://bobbyweed.com/wp-content/uploads/2021/08/Slammer-Squire-at-World-Golf-Village-designed-by-Bobby-Weed-Sam-Snead-Gene-Sarazen-2.jpg">
+    </div>
+
+    <div class="post">
+    <h6>World Golf Village (The King and Bear), Pinehurst, NC</h6>
+    <img src="https://www.gryphongolftours.com/wp-content/uploads/2016/11/King-Bear-11.jpg">
+    </div>
+
+
+    <div class="post">
+        <h4>MORE TO COME...</h4>
+
+    </div>
+
+     <a href="index.html" style="
+      display:inline-block;
+      padding:10px 20px;
+      background:rgb(48, 203, 71);
+      color:white;
+      text-decoration:none;
+      border-radius:5px;
+  ">
+    Home
+  </a>
+
+
+  <script>
+        (function () {
+            const cursor = document.getElementById('cursor');
+
+            // Follow the mouse
+            window.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursor.style.opacity = '1';
+            });
+
+            // Hide when leaving the window
+            window.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0';
+            });
+
+            // Click feedback
+            window.addEventListener('mousedown', () => cursor.classList.add('cursor--down'));
+            window.addEventListener('mouseup', () => cursor.classList.remove('cursor--down'));
+
+            // Grow on interactive elements
+            const interactiveSelector = 'a, button, [role="button"], input, select, textarea, label';
+            window.addEventListener('mouseover', (e) => {
+                if (e.target.closest(interactiveSelector)) cursor.classList.add('cursor--hover');
+            });
+            window.addEventListener('mouseout', (e) => {
+                if (e.target.closest(interactiveSelector)) cursor.classList.remove('cursor--hover');
+            });
+        })();
+    </script>
+
+</body>
+</html>
