@@ -169,23 +169,17 @@ button:hover,
 }
 
 button {
-      padding: 12px 24px;
-      font-size: 20px;
-      border: none;
-      border-radius: 30px;
-      background: rgb(33, 218, 113);
-      color: white;
-      cursor: pointer;
-      margin: -100;
-    }
+  padding: 12px 24px;
+  font-size: 20px;
+  border: none;
+  border-radius: 30px;
+  background: rgb(33, 218, 113);
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+}
 
-    button {
-        position: relative;
-        left: 0px;
-        top: -150px;
-    }
-
-    body {
+body {
     font-family: sans-serif;
     background-color: #2b5d24;
     font-weight: bold;
@@ -236,7 +230,7 @@ button {
 
   /* === Navigation Buttons === */
   .carousel button {
-    position: relative;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255,255,255,0.7);
@@ -246,6 +240,8 @@ button {
     height: 40px;
     font-size: 22px;
     color: #333;
+    padding: 0; /* Reset padding from general button style */
+    margin: 0; /* Reset margin from general button style */
     cursor: pointer;
     transition: background 0.3s;
   }
@@ -256,16 +252,13 @@ button {
 
 .carousel .prev {
   position: absolute;
-  left: 10px;   /* Adjust as needed */
-  top: 50%;
-  transform: translateY(-50%);
+  left: 10px;
 }
 
 .carousel .next {
   position: absolute;
-  right: 500px;  /* Adjust as needed */
-  top: 50%;
-  transform: translateY(-50%);
+  right: 10px;
+  left: auto; /* Override the general button style */
 }
 
   /* === Optional Dots === */
