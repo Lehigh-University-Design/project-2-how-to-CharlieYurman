@@ -10,14 +10,10 @@ body {
 body {
     display: grid;
     place-items: center;
-    background: #18532a;
     color: #eee;
     gap: 1rem;
-}
-
-body {
-    /* Set your image */
-    background-image: url(https://img.freepik.com/free-photo/green-fake-grass-background_53876-16313.jpg);
+        /* Set your image */
+    background-image: url(grasstextureedit.jpg);
 
     /* Make it cover the whole screen */
     background-size: cover;
