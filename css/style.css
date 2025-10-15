@@ -308,12 +308,6 @@ button {
   margin: 80px 0 20px 40; /* top, right, bottom, left */
 }
 
-.carousel2 {
-  width: 1000px; /* or your desired width */
-  display: block;
-  margin-left: 360px;
-  margin-right: auto;
-}
   #driverimg {
     width: 300px;               /* starting size */
     border-radius: 0px;        /* optional rounded corners */
@@ -459,6 +453,15 @@ button {
     border: 0;
     border-radius: 12px;
   }
+
+  /* The floating text */
+.gallery2 {
+  width: 1000px; /* or your desired width */
+  display: block;
+  margin-left: 360px;
+  margin-right: auto;
+}
+
 
 
  
