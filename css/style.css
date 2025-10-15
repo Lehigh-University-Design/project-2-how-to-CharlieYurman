@@ -87,11 +87,6 @@ h8 {
     margin-top: 80px;
 }
 
-.post{
-    border: 1px solid var(--dark-color); 
-    margin-bottom: 1em;
-    padding: .5em 1em;
-}
 
 .post{
     border: 1px solid var(--dark-color); 
@@ -117,6 +112,22 @@ h8 {
     a:hover {
         text-decoration: underline;
     }
+}
+
+.text-box {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: rgba(34, 120, 10, 0.8);
+  padding: 10px;
+  border-radius: 10px; ;
+  max-width: 700px;
+  max-height: 200px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 32px;
+  display: block;
+  border: 10px solid #79ec2777;
 }
 
 /* The custom cursor */
@@ -173,7 +184,7 @@ button {
       font-size: 20px;
       border: none;
       border-radius: 30px;
-      background: rgb(33, 218, 113);
+      background: rgb(34, 187, 100);
       color: white;
       cursor: pointer;
       margin: -100;
@@ -185,14 +196,10 @@ button {
         top: -150px;
     }
 
-    body {
-    font-family: sans-serif;
-    background-color: #2b5d24;
-    font-weight: bold;
-    .text-box {
-    margin-left: 44vw;
-   margin-top: 42vh;
-}
+  body {
+  font-family: sans-serif;
+  background-color: #2b5d24;
+  font-weight: bold;
 }
 
 
@@ -213,12 +220,15 @@ button {
 
 .carousel {
     position: relative;
-    width: 800px;
+    width: 900px;
     height: 500px;
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     background: #000;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
 
   /* === Carousel Images === */
@@ -234,9 +244,9 @@ button {
     display: block;
   }
 
-  /* === Navigation Buttons === */
+/* === Navigation Buttons === */
   .carousel button {
-    position: relative;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255,255,255,0.7);
@@ -246,6 +256,8 @@ button {
     height: 40px;
     font-size: 22px;
     color: #333;
+    padding: 0; /* Reset padding from general button style */
+    margin: 0; /* Reset margin from general button style */
     cursor: pointer;
     transition: background 0.3s;
   }
@@ -256,16 +268,13 @@ button {
 
 .carousel .prev {
   position: absolute;
-  left: 10px;   /* Adjust as needed */
-  top: 50%;
-  transform: translateY(-50%);
+  left: 10px;
 }
 
 .carousel .next {
   position: absolute;
-  right: 500px;  /* Adjust as needed */
-  top: 50%;
-  transform: translateY(-50%);
+  right: 10px;
+  left: auto; /* Override the general button style */
 }
 
   /* === Optional Dots === */
@@ -290,3 +299,170 @@ button {
   .dots span.active {
     background: white;
   }
+
+  #distancesim {
+    transform: rotate(45deg);
+  }
+
+  .swing-description {
+  margin: 80px 0 20px 40; /* top, right, bottom, left */
+}
+
+.carousel2 {
+  width: 1000px; /* or your desired width */
+  display: block;
+  margin-left: 360px;
+  margin-right: auto;
+}
+  #driverimg {
+    width: 300px;               /* starting size */
+    border-radius: 0px;        /* optional rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth animation */
+    cursor: pointer;
+  }
+
+  /* Enlarge slightly on hover */
+  #driverimg:hover {
+    transform: scale(1.08);     /* 1.08 = 8% larger */
+  }
+
+    #putterimg {
+    width: 300px;               /* starting size */
+    border-radius: 0px;        /* optional rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth animation */
+    cursor: pointer;
+  }
+
+  /* Enlarge slightly on hover */
+  #putterimg:hover {
+    transform: scale(1.08);     /* 1.08 = 8% larger */
+  }
+
+      #wedgeimg {
+    width: 300px;               /* starting size */
+    border-radius: 0px;        /* optional rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth animation */
+    cursor: pointer;
+  }
+
+  /* Enlarge slightly on hover */
+  #wedgeimg:hover {
+    transform: scale(1.08);     /* 1.08 = 8% larger */
+  }
+
+    #ironsimg {
+    width: 300px;               /* starting size */
+    border-radius: 0px;        /* optional rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth animation */
+    cursor: pointer;
+  }
+
+  /* Enlarge slightly on hover */
+  #ironsimg:hover {
+    transform: scale(1.08);     /* 1.08 = 8% larger */
+  }
+
+  #hybridimg {
+    width: 300px;               /* starting size */
+    border-radius: 0px;        /* optional rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth animation */
+    cursor: pointer;
+  }
+
+  /* Enlarge slightly on hover */
+  #hybridimg:hover {
+    transform: scale(1.08);     /* 1.08 = 8% larger */
+  }
+
+/* Scrollable gallery container */
+  .gallery-container {
+    display: flex;
+    width: 500%;
+    height: 500px;
+    overflow-x: auto;
+    scroll-behavior: smooth; /* smooth scrolling effect */
+    gap: 10px;
+    padding: 10px;
+    border: 2px solid #7eef22;
+    border-radius: 10px;
+    width: 90%;
+    margin: 20px auto;
+    align-self: stretch;
+  }
+
+  .gallery-container img {
+    width: 95%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-container img:hover {
+    transform: scale(1.2);
+  }
+
+  /* Example styling for trigger images */
+  .trigger-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+.trigger-row img {
+  width: 200px;            /* define only width */
+  height: auto;            /* let height adjust naturally */
+  object-fit: contain;     /* preserves ratio, no stretching */
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  transition: transform 0.3s ease; border: #7eef22;
+  }
+
+  .trigger-row img:hover {
+    transform: scale(1.2);
+  }
+
+.center-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* responsive grid */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* --- Video Container Styling --- */
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .video-wrapper iframe,
+  .video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 12px;
+  }
+
+
+ 
+
+  
+
+  
