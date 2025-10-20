@@ -13,7 +13,7 @@ body {
     color: #eee;
     gap: 1rem;
         /* Set your image */
-    background-image: url(grasstextureedit.jpg);
+    background-image: url(backgroundweb.png);
 
     /* Make it cover the whole screen */
     background-size: cover;
@@ -381,7 +381,7 @@ button {
   }
 
   .gallery-container img {
-    width: 95%;
+    width: 200%;
     height: 500px;
     object-fit: cover;
     border-radius: 10px;
@@ -389,7 +389,7 @@ button {
   }
 
   .gallery-container img:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
 
   /* Example styling for trigger images */
@@ -452,11 +452,22 @@ button {
 
   /* The floating text */
 .gallery2 {
-  width: 1000px; /* or your desired width */
+  width: 1400px; /* or your desired width */
   display: block;
   margin-left: 360px;
   margin-right: auto;
 }
+
+  figure {
+      text-align: center; /* centers the image and caption */
+      margin: 20px;
+    }
+    figcaption {
+      font-size: 14px;
+      color: #f7f7f7;
+      margin-top: 8px;
+      font-style: italic;
+    }
 
 
 
