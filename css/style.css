@@ -30,7 +30,7 @@ body {
 }
 
 h1 {
-    font-size: 400px;
+    font-size: 250px;
     /* change this number to make it bigger/smaller */
     font-weight: bold;
     text-align: center;
@@ -198,11 +198,13 @@ button {
   font-weight: bold;
 }
 
-
+#swing-image {
+  width: 200px
+}
 #image1 {
     position: relative;
-      top: -450px;   /* move down */
-      left: 500px;  /* move right */
+      top: -600px;   /* move down */
+      left: 600px;  /* move right */
       width: 800px;
 }
 
@@ -221,24 +223,72 @@ button {
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    background: #000;
+    background: #168307;
     margin-left: auto;
     margin-right: auto;
-    display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   }
 
   /* === Carousel Images === */
   .carousel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* preserve aspect ratio and show whole image */
     display: none;
     cursor: pointer;
   }
 
   .carousel img.active {
     display: block;
+    margin: 0 auto; /* center within flex container */
   }
+
+/* Carousel item captions */
+.carousel-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  /* keep display controlled by the carousel image rules so only the .active image shows */
+}
+
+.carousel-item figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+  color: #fff;
+  font-size: 16px;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 220ms ease, opacity 220ms ease;
+  text-align: center;
+}
+
+.carousel-item:hover figcaption,
+.carousel-item:focus-within figcaption {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Ensure only the active carousel image is visible */
+.carousel-item img.active {
+  display: block;
+}
 
 /* === Navigation Buttons === */
   .carousel button {
@@ -364,33 +414,92 @@ button {
     transform: scale(1.08);     /* 1.08 = 8% larger */
   }
 
-/* Scrollable gallery container */
+
+  /* Scrollable gallery container: show one image-width viewport at a time */
+  :root {
+    --gallery-item-width: 420px; /* adjust to match your image width */
+    --gallery-item-height: 500px; /* adjust to match desired height */
+  }
+
   .gallery-container {
     display: flex;
-    width: 500%;
-    height: 500px;
-    overflow-x: auto;
-    scroll-behavior: smooth; /* smooth scrolling effect */
+    flex-direction: row;
     gap: 10px;
     padding: 10px;
     border: 2px solid #7eef22;
     border-radius: 10px;
-    width: 90%;
+    width: calc(var(--gallery-item-width) + 20px); /* viewport equals one item plus padding/gap */
+    height: var(--gallery-item-height);
     margin: 20px auto;
-    align-self: stretch;
+  overflow-x: auto;
+  overflow-y: hidden; /* hide vertical scrollbar */
+    scroll-behavior: smooth; /* smooth scrolling effect */
+    scroll-snap-type: x mandatory; /* snap to children */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery-container .gallery-item {
+    flex: 0 0 var(--gallery-item-width);
+    width: var(--gallery-item-width);
+    height: var(--gallery-item-height);
+    scroll-snap-align: center;
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+
+  /* Make sure children don't add extra vertical space */
+  .gallery-container .gallery-item, .gallery-container figure {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   .gallery-container img {
-    width: 200%;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 10px;
     transition: transform 0.3s ease;
+    display: block;
   }
 
   .gallery-container img:hover {
-    transform: scale(1.5);
+    transform: scale(1.05);
   }
+
+/* Hover caption for gallery items */
+.gallery-item {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gallery-item figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 180ms ease, opacity 180ms ease;
+  opacity: 0;
+}
+
+.gallery-item:hover figcaption {
+  transform: translateY(0);
+  opacity: 1;
+}
 
   /* Example styling for trigger images */
   .trigger-row {
@@ -454,7 +563,7 @@ button {
 .gallery2 {
   width: 1400px; /* or your desired width */
   display: block;
-  margin-left: 360px;
+  margin-left: 100px;
   margin-right: auto;
 }
 

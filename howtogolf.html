@@ -42,9 +42,10 @@
 
 
     <div class="carousel">
-  <img src="https://www.golfoften.com/content/images/2023/06/Best-golf-grip-for-accuracy-pic2.jpg" class="active" alt="Image 1" onclick="window.open('https://www.golfoften.com/best-golf-grip-for-accuracy/')">
-  <img src="https://cdn.shopify.com/s/files/1/0793/9565/1906/files/what_is_the_correct_way_to_hold_a_golf_club.webp?v=1731924774" alt="Image 2" onclick="window.open('https://www.golfshaftwarehouse.com/blogs/news/how-to-hold-a-golf-club?srsltid=AfmBOop0ng-VDHX_jhyliWcUHIWz-tew74Jak243byEMBmadasLCgKN1')">
-  <img src="https://lilyfieldphysio.com.au/wp-content/uploads/2023/06/g1.jpg" alt="Image 3" onclick="window.open('https://lilyfieldphysio.com.au/blog/uncategorized/how-to-hold-a-golf-club-the-proper-golf-grip/')">
+  <img src="GolfGrip1.png" class="active" class="GolfGrip1">
+  <img src="GolfGrip2.png" alt="GolfGrip2">
+  <img src="GolfGrip3.png" alt="GolfGrip3">
+  <img src="GolfGrip4.png" alt="GolfGrip4">
 
   <button class="prev">&#10094;</button>
   <button class="next">&#10095;</button>
@@ -52,6 +53,103 @@
   <div class="dots"></div>
 </div>
 
+
+</div>
+
+
+  <script>
+    // Map trigger click to gallery item matching by caption text
+    (function () {
+      const gallery = document.getElementById('gallery');
+      if (!gallery) return;
+      const galleryItems = Array.from(gallery.querySelectorAll('.gallery-item'));
+
+      function findGalleryIndexByCaption(text) {
+        text = (text || '').trim().toLowerCase();
+        if (!text) return -1;
+
+        const normalize = s => (s || '').trim().toLowerCase();
+
+        // 1) exact match
+        for (let i = 0; i < galleryItems.length; i++) {
+          const capEl = galleryItems[i].querySelector('figcaption');
+          const capText = normalize(capEl ? capEl.textContent : '');
+          if (capText === text) return i;
+        }
+
+        // 2) substring match (trigger caption contained in gallery caption or vice-versa)
+        for (let i = 0; i < galleryItems.length; i++) {
+          const capEl = galleryItems[i].querySelector('figcaption');
+          const capText = normalize(capEl ? capEl.textContent : '');
+          if (capText.includes(text) || text.includes(capText)) return i;
+        }
+
+        // 3) word-overlap scoring
+        const wordsA = text.split(/\s+/).filter(Boolean);
+        let bestScore = 0;
+        let bestIdx = -1;
+        for (let i = 0; i < galleryItems.length; i++) {
+          const capEl = galleryItems[i].querySelector('figcaption');
+          const capText = normalize(capEl ? capEl.textContent : '');
+          const wordsB = capText.split(/\s+/).filter(Boolean);
+          const overlap = wordsA.filter(w => wordsB.includes(w)).length;
+          if (overlap > bestScore) { bestScore = overlap; bestIdx = i; }
+        }
+        if (bestScore > 0) return bestIdx;
+
+        // 4) Levenshtein distance fallback (small captions) - choose smallest distance
+        function levenshtein(a, b) {
+          if (a === b) return 0;
+          const la = a.length, lb = b.length;
+          if (la === 0) return lb;
+          if (lb === 0) return la;
+          const v0 = new Array(lb + 1), v1 = new Array(lb + 1);
+          for (let j = 0; j <= lb; j++) v0[j] = j;
+          for (let i = 0; i < la; i++) {
+            v1[0] = i + 1;
+            for (let j = 0; j < lb; j++) {
+              const cost = a[i] === b[j] ? 0 : 1;
+              v1[j + 1] = Math.min(v1[j] + 1, v0[j + 1] + 1, v0[j] + cost);
+            }
+            for (let j = 0; j <= lb; j++) v0[j] = v1[j];
+          }
+          return v1[lb];
+        }
+
+        let bestDist = Infinity;
+        let bestDistIdx = -1;
+        for (let i = 0; i < galleryItems.length; i++) {
+          const capEl = galleryItems[i].querySelector('figcaption');
+          const capText = normalize(capEl ? capEl.textContent : '');
+          const d = levenshtein(text, capText);
+          if (d < bestDist) { bestDist = d; bestDistIdx = i; }
+        }
+        // choose the levenshtein match only if reasonably close
+        if (bestDistIdx >= 0 && bestDist <= Math.max(1, Math.floor(text.length * 0.4))) return bestDistIdx;
+
+        return -1;
+      }
+
+      // Attach new handlers to triggers (captions may differ from index order)
+      document.querySelectorAll('.trigger-row .trigger-item').forEach(el => {
+        const cap = el.querySelector('figcaption');
+        const captionText = cap ? cap.textContent : null;
+        if (!captionText) return;
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const idx = findGalleryIndexByCaption(captionText);
+          if (idx >= 0 && typeof scrollToImage === 'function') scrollToImage(idx);
+        });
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const idx = findGalleryIndexByCaption(captionText);
+            if (idx >= 0 && typeof scrollToImage === 'function') scrollToImage(idx);
+          }
+        });
+      });
+    })();
+  </script>
 <script>
   const images = document.querySelectorAll('.carousel img');
   const prevBtn = document.querySelector('.prev');
@@ -123,14 +221,30 @@
 </div>
 
 <div class="gallery2">
-  <img src="Golfswingsketch1.png" class="active" alt="Image 1">
-  <img src="Golfswingsketch2.png" alt="Image 2">
-  <img src="Golfswingsketch3.png" alt="Image 3">
-  <img src="Golfswingsketch4.png" alt="Image 4">
-  <img src="Golfswingsketch5.png" alt="Image 5">
-  <img src="Golfswingsketch6.png"
-
-  
+  <figure class="gallery-item">
+    <img src="Golfswingsketch1.png" alt="Golf swing sketch 1">
+    <figcaption>Step 1: The Setup</figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img src="Golfswingsketch2.png" alt="Golf swing sketch 2">
+    <figcaption>Step 2: Backswing</figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img src="Golfswingsketch3.png" alt="Golf swing sketch 3">
+    <figcaption>Step 3: Swing Peak </figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img src="Golfswingsketch4.png" alt="Golf swing sketch 4">
+    <figcaption>Step 4: Downswing</figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img src="Golfswingsketch5.png" alt="Golf swing sketch 5">
+    <figcaption>Step 5: Contact</figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img src="Golfswingsketch6.png" alt="Golf swing sketch 6">
+    <figcaption>Step 6: The Finish</figcaption>
+  </figure>
 
   <div class="dots2"></div>
 </div>
@@ -143,32 +257,53 @@
 
 
 <div class="trigger-row">
-  <img src="https://acushnet.scene7.com/is/image/titleist/TSi1-Driver-Gallery-Sole-2000x2000?wid=600&fmt=png-alpha" alt="Trigger 1" onclick="scrollToImage(0)">
-  <img src="https://acushnet.scene7.com/is/image/titleist/TSi2-Hybrid-Player-Manager-2000x2000?wid=600&fmt=png-alpha" alt="Trigger 2" onclick="scrollToImage(1)">
-  <img src="https://nygolfcenter.com/cdn/shop/files/2025_Titleist_T250_Catalog02_RGB.png?v=1757434330&width=1001" alt="Trigger 3" onclick="scrollToImage(2)">
-  <img src="https://www.titleist.com/dw/image/v2/AAZW_PRD/on/demandware.static/-/Sites-titleist-clubs-master/default/dw2415304e/853C_04.png?sw=650&sh=650&sm=fit&sfrm=png" alt="Trigger 4" onclick="scrollToImage(3)">
-  <img src="https://www.wilson.com/en-us/media/catalog/product/article_images/WG1P028201_/WG1P028201__4f9068781d6a25a879e386ed5839a411.png" alt="Trigger 5" onclick="scrollToImage(4)">
+  <figure class="gallery-item trigger-item">
+    <img src="https://acushnet.scene7.com/is/image/titleist/TSi1-Driver-Gallery-Sole-2000x2000?wid=600&fmt=png-alpha" alt="Trigger 1">
+    <figcaption>Driver</figcaption>
+  </figure>
+  <figure class="gallery-item trigger-item">
+    <img src="https://acushnet.scene7.com/is/image/titleist/TSi2-Hybrid-Player-Manager-2000x2000?wid=600&fmt=png-alpha" alt="Trigger 2">
+    <figcaption>Hybrid</figcaption>
+  </figure>
+  <figure class="gallery-item trigger-item">
+    <img src="https://nygolfcenter.com/cdn/shop/files/2025_Titleist_T250_Catalog02_RGB.png?v=1757434330&width=1001" alt="Trigger 3">
+    <figcaption>Iron</figcaption>
+  </figure>
+  <figure class="gallery-item trigger-item">
+    <img src="https://www.titleist.com/dw/image/v2/AAZW_PRD/on/demandware.static/-/Sites-titleist-clubs-master/default/dw2415304e/853C_04.png?sw=650&sh=650&sm=fit&sfrm=png" alt="Trigger 4">
+    <figcaption>Wedge</figcaption>
+  </figure>
+  <figure class="gallery-item trigger-item">
+    <img src="https://www.wilson.com/en-us/media/catalog/product/article_images/WG1P028201_/WG1P028201__4f9068781d6a25a879e386ed5839a411.png" alt="Trigger 5">
+    <figcaption>Putter</figcaption>
+  </figure>
 </div>
 
 <!-- 🖼️ Scrollable gallery (already existing images on your site) -->
 <div id="gallery" class="gallery-container">
-  <img id="gallery-img-1" src="Sketchdriver.png" alt="Gallery Image 1">
-  <img id="gallery-img-2" src="Sketchhybrid.png" alt="Gallery Image 2">
-  <img id="gallery-img-3" src="Sketchirons.png" alt="Gallery Image 3">
-  <img id="gallery-img-4" src="Sketchwedges.png" alt="Gallery Image 4">
-  <img id="gallery-img-5" src="Sketchputter.png" alt="Gallery Image 5">
+  <figure class="gallery-item">
+    <img id="gallery-img-1" src="Sketchdriver.png" alt="Gallery Image 1">
+    <figcaption>Driver</figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img id="gallery-img-2" src="Sketchhybrid.png" alt="Gallery Image 2">
+    <figcaption>Hybrid</figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img id="gallery-img-3" src="Sketchirons.png" alt="Gallery Image 3">
+    <figcaption>Irons</figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img id="gallery-img-4" src="Sketchwedges.png" alt="Gallery Image 4">
+    <figcaption>Wedges</figcaption>
+  </figure>
+  <figure class="gallery-item">
+    <img id="gallery-img-5" src="Sketchputter.png" alt="Gallery Image 5">
+    <figcaption>Putter</figcaption>
+  </figure>
 </div>
 
-<script>
-  // Scroll to the corresponding image in the gallery
-  function scrollToImage(index) {
-    const gallery = document.getElementById('gallery');
-    const images = gallery.getElementsByTagName('img');
-    if (images[index]) {
-      images[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    }
-  }
-</script>
+
 
 <div class="text-box">
 <h3>18Birdies</h3>
@@ -202,9 +337,101 @@
 </div>
  </body>
 
-<figure>
-    <img src="Golfswingsketch1.png" alt="Golf swing" width="400">
-    <figcaption>Setup</figcaption>
-  </figure>
+<script>
+  // Ensure gallery scrolling and trigger mapping work even if earlier scripts ran too early.
+  document.addEventListener('DOMContentLoaded', () => {
+    const gallery = document.getElementById('gallery');
+    if (!gallery) return;
+
+    const galleryItems = Array.from(gallery.querySelectorAll('.gallery-item'));
+
+    function scrollToImage(index) {
+      const items = galleryItems;
+      const target = items[index];
+      if (!target) return;
+      const galleryRect = gallery.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const currentScroll = gallery.scrollLeft;
+      const targetCenter = (targetRect.left - galleryRect.left) + (targetRect.width / 2);
+      const galleryCenter = galleryRect.width / 2;
+      const scrollTo = currentScroll + (targetCenter - galleryCenter);
+      gallery.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+
+    const normalize = s => (s || '').trim().toLowerCase();
+
+    function findGalleryIndexByCaption(text) {
+      text = normalize(text);
+      if (!text) return -1;
+
+      // 1) exact
+      for (let i = 0; i < galleryItems.length; i++) {
+        const cap = galleryItems[i].querySelector('figcaption');
+        if (normalize(cap ? cap.textContent : '') === text) return i;
+      }
+      // 2) substring
+      for (let i = 0; i < galleryItems.length; i++) {
+        const cap = normalize(galleryItems[i].querySelector('figcaption')?.textContent);
+        if (cap.includes(text) || text.includes(cap)) return i;
+      }
+      // 3) word overlap
+      const wordsA = text.split(/\s+/).filter(Boolean);
+      let bestScore = 0, bestIdx = -1;
+      for (let i = 0; i < galleryItems.length; i++) {
+        const cap = normalize(galleryItems[i].querySelector('figcaption')?.textContent);
+        const wordsB = cap.split(/\s+/).filter(Boolean);
+        const overlap = wordsA.filter(w => wordsB.includes(w)).length;
+        if (overlap > bestScore) { bestScore = overlap; bestIdx = i; }
+      }
+      if (bestScore > 0) return bestIdx;
+      // 4) Levenshtein
+      function levenshtein(a, b) {
+        if (a === b) return 0;
+        const la = a.length, lb = b.length;
+        if (la === 0) return lb; if (lb === 0) return la;
+        const v0 = new Array(lb + 1), v1 = new Array(lb + 1);
+        for (let j = 0; j <= lb; j++) v0[j] = j;
+        for (let i = 0; i < la; i++) {
+          v1[0] = i + 1;
+          for (let j = 0; j < lb; j++) {
+            const cost = a[i] === b[j] ? 0 : 1;
+            v1[j + 1] = Math.min(v1[j] + 1, v0[j + 1] + 1, v0[j] + cost);
+          }
+          for (let j = 0; j <= lb; j++) v0[j] = v1[j];
+        }
+        return v1[lb];
+      }
+      let bestDist = Infinity, bestDistIdx = -1;
+      for (let i = 0; i < galleryItems.length; i++) {
+        const cap = normalize(galleryItems[i].querySelector('figcaption')?.textContent);
+        const d = levenshtein(text, cap);
+        if (d < bestDist) { bestDist = d; bestDistIdx = i; }
+      }
+      if (bestDistIdx >= 0 && bestDist <= Math.max(1, Math.floor(text.length * 0.4))) return bestDistIdx;
+      return -1;
+    }
+
+    // Attach handlers to triggers (idempotent check)
+    document.querySelectorAll('.trigger-row .trigger-item').forEach(el => {
+      if (el.__triggerBound) return; // already bound
+      el.__triggerBound = true;
+      el.setAttribute('tabindex', '0');
+      const cap = el.querySelector('figcaption');
+      const captionText = cap ? cap.textContent : '';
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = findGalleryIndexByCaption(captionText);
+        if (idx >= 0) scrollToImage(idx);
+      });
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const idx = findGalleryIndexByCaption(captionText);
+          if (idx >= 0) scrollToImage(idx);
+        }
+      });
+    });
+  });
+</script>
 
     </html>
